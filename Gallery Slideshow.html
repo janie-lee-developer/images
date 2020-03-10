@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Gallery Slide show</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <style>
+            * {
+                box-sizing: border-box;
+            }
+            body {
+                font-family: Arial, Helvetica, sans-serif;
+                margin: 0;
+                width: 80%;
+                margin: auto;
+                height: 2000px;
+            }
+            img {
+                vertical-align: middle;
+            }
+            div.mySlides img {
+                object-fit: cover;
+                height: 600px;
+            }
+            .container {
+                position: relative;
+                border: rgb(139, 139, 139) 1px solid;
+            }
+            .mySlides {
+                display: none;
+            }
+            .cursor {
+                cursor: pointer;
+            }
+            .prev, .next {
+                cursor: pointer;
+                position: absolute;
+                top: 40%;
+                padding: 16px;
+                margin-top: -50px;
+                font-weight: bold;
+                font-size: 55px;
+                user-select: none;
+                -webkit-user-select: none;
+                color: rgba(107, 107, 107,0.4);
+                transition: all .1s ease;
+            }
+            .next {
+                right: 0;
+            }
+            .prev:hover, .next:hover {
+                font-size: 60px;
+                color: rgba(107, 107, 107,1);;
+            }
+            .prev:active, .next:active {
+                top: 40.1%;
+            }
+            .numbertext {
+                color: rgba(61, 61, 61, 0.8);
+                padding: 8px 12px;
+                position: absolute;
+                top: 0;
+            }
+            .caption-container {
+                text-align: center;
+                text-transform: capitalize;
+                background: none;
+                padding: 2px 16px;
+                color: rgb(39, 39, 39);
+            }
+            .row::after {
+                content: "";
+                clear: both;
+                display: table;
+            }
+            .column {
+                float: left;
+                width: 16.66%;
+            }
+            .column img {
+                height: 80px;
+            }
+            
+            .demo {
+                opacity: 0.6;
+            }
+            .active, .demo:hover {
+                opacity: 1;
+            }
+
+            h2 {
+                font-size: 30px;
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                letter-spacing: 1px;
+                margin-bottom: 10px;
+                color: rgb(66, 66, 66);
+                display: block;
+                display: table;
+                text-align: left;
+                
+            }
+           
+            /*
+            div.row {
+                border: rgb(189, 243, 63) solid 2px; 
+            }
+            div.column {
+                border: rgb(255, 105, 255) solid 2px;
+            }*/
+        </style>
+        </head>
+        <body>
+            <h2 style="text-align: center;">Popular Flight Destinations</h2>
+            <div class="container">
+                <div class="mySlides">
+                    <div class="numbertext">1 / 6</div>
+                    <img src="pics/img1.png" style="width: 100%">
+                </div>
+
+                <div class="mySlides">
+                    <div class="numbertext">2 / 6</div>
+                    <img src="pics/img2.png" style="width: 100%;">
+                </div>
+
+                <div class="mySlides">
+                    <div class="numbertext">3 / 6</div>
+                    <img src="pics/img3.png" style="width: 100%;">
+                </div>
+
+                <div class="mySlides">
+                    <div class="numbertext">4 / 6</div>
+                    <img src="pics/img4.png" style="width: 100%;">
+                </div>
+
+                <div class="mySlides">
+                    <div class="numbertext">5 / 6</div>
+                    <img src="pics/img5.png" style="width: 100%;">
+                </div>
+
+                <div class="mySlides">
+                    <div class="numbertext">6 / 6</div>
+                    <img src="pics/img6.png" style="width: 100%;">
+                </div>
+
+                <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                <a class="next" onclick="plusSlides(1)">&#10095;</a>
+
+                <div class="caption-container">
+                    <p id="caption"></p>
+                </div>
+
+                <div class="row">
+                    <div class="column">
+                        <img class="demo cursor" src="pics/img1.png" style="width: 100%;" onclick="currentSlide(1)" alt="The Alphes Forest in Northern Europe">
+                    </div>
+
+                    <div class="column">
+                        <img class="demo cursor" src="pics/img2.png" style="width: 100%;" onclick="currentSlide(2)" alt="Islands of Havana with Tropical Trees">
+                    </div>
+
+                    <div class="column">
+                        <img class="demo cursor" src="pics/img3.png" style="width: 100%" onclick="currentSlide(3)" alt="The great lake of Northern Europe">
+                    </div>
+
+                    <div class="column">
+                        <img class="demo cursor" src="pics/img4.png" style="width: 100%" onclick="currentSlide(4)" alt="Adorable Chipmunk on green grasses and flowers">
+                    </div>
+
+                    <div class="column">
+                        <img class="demo cursor" src="pics/img5.png" style="width: 100%;" onclick="currentSlide(5)" alt="Infinite pool at a resort island">
+                    </div>
+
+                    <div class="column">
+                        <img class="demo cursor" src="pics/img6.png" style="width: 100%;" onclick="currentSlide(6)" alt="New York City Central Park">
+                    </div>
+                </div>
+            </div>
+            <script>
+                var slideIndex = 1;
+                showSlides(slideIndex);
+
+                function plusSlides(n) {
+                    showSlides(slideIndex += n);
+                }
+
+                function currentSlide(n) {
+                    showSlides(slideIndex = n);
+                }
+
+                function showSlides(n) {
+                    var i;
+                    var slides = document.getElementsByClassName("mySlides");
+                    var dots = document.getElementsByClassName("demo");
+                    var captionText = document.getElementById("caption");
+                    if (n > slides.length) {slideIndex = 1}
+                    if (n < 1) {slideIndex = slides.length}
+                    for (i = 0; i < slides.length; i++) {
+                        slides[i].style.display = "none"
+                    }
+                    for (i = 0; i < dots.length; i++) {
+                        dots[i].className = dots[i].className.replace("active", "");
+                    }
+                    slides[slideIndex-1].style.display = "block";
+                    dots[slideIndex-1].className += " active";
+                    captionText.innerHTML = dots[slideIndex-1].alt;
+                }
+            </script>
+        </body>
+</html>
